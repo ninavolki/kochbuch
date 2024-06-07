@@ -33,16 +33,17 @@
             <div class="col-md"></div>
             <div class="col-md">
               <div class="container">
-                <form>
-                    <input type="text" name="deinName" placeholder="Dein Name" required>
-                    <input type="text" name="rezeptName" placeholder="Rezeptname" required>
+                <form id="dataForm" onsubmit="submitForm(event)">
+                    <input type="text" name="Rezeptname" placeholder="Rezeptname" id="Rezeptname"required>
+
                     <p>Schwierigkeitsgrad:</p>
                     Einfach <input type="radio" name="schwirigkeit-e"required> 
                     Mittel <input type="radio" name="schwirigkeit-m"required> 
                     Schwierig <input type="radio" name="schwirigkeit-s"required> 
-                    <input type="text" name="zutaten" placeholder="Zutaten" required>
-                    <input type="text" name="zubereitungszeit" placeholder="Zubereitungszeit" required>
-                    <input type="text" name="Arbeitsschritte" placeholder="Bitte beschreibe die Arbeitsschritte" required>
+
+                    <input type="text" name="Zutaten" placeholder="Zutaten" id="Zutaten" required>
+                    <input type="text" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" required>
+                    <input type="text" name="Arbeitsschritte" placeholder="Bitte beschreibe die Arbeitsschritte" id="Arbeitsschritte" required>
            
                     <div class="sterneBewertung">
                       <p>:Bewertung</p>
@@ -66,6 +67,65 @@
             <div class="col-md"></div>
 </div>
 </div>
+
+    <script>
+       // Hier kommt der JavaScript Code https://me22e-1.hbevf6.easypanel.host/api/collections/Rezeptbuch/records
+       function submitForm(event) {
+        event.preventDefault();
+
+        const data = createJsObjectFromHtmlForm(event.target);
+        console.log(data); // in der Konsole sieht man wie das JavaScript Object aussieht sobald man auf "Daten Senden" klickt.
+
+        const jsonBody = JSON.stringify(data);
+
+        fetch(
+          "https://me22e-1.hbevf6.easypanel.host/api/collections/Rezeptbuch/records",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: jsonBody,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            alert("Daten erfolgreich gesendet");
+            document.getElementById("dataForm").reset();
+          })
+          .catch((error) => {
+            alert(
+              "Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut."
+            );
+            console.error("Error:", error);
+          });
+
+        /**
+         * Aufgabe 4:
+         *
+         * Testen Sie das Formular und füllen Sie es mit beliebigen Daten aus und senden es ab.
+         * Sie können bei der Lehrperson nachfragen, ob die Daten erfolgreich gesendet und in der REST API gespeichert wurden.
+         * */
+      }
+      /**
+       * Hilfsmethode, um Daten aus Formular auszulesen.
+       * */
+      function createJsObjectFromHtmlForm(form) {
+        const formData = new FormData(event.target);
+        const data = {};
+
+        for (let [key, value] of formData.entries()) {
+          if (value === "on") {
+            value = true;
+          }
+          if (value === "off") {
+            value = false;
+          }
+          data[key] = value;
+        }
+        return data;
+      }
+    </script>
 </body>
 <style>
 
