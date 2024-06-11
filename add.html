@@ -68,54 +68,74 @@
 </div>
 </div>
 
-    <script>
-       // Hier kommt der JavaScript Code https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records
-       function submitForm(event) {
-        event.preventDefault();
+<script>
+  function submitForm(event) {
+      event.preventDefault();
 
-        const data = createJsObjectFromHtmlForm(event.target);
-        console.log(data); // in der Konsole sieht man wie das JavaScript Object aussieht sobald man auf "Daten Senden" klickt.
+      /**
+       * Mithilfe der createJsObjectFromHtmlForm() können Daten als JavaScript Object 
+       * aus dem Formular ausgelesen werden.
+       * */
+      const data = createJsObjectFromHtmlForm(event);
+      console.log(data); // in der Konsole sieht man wie das JavaScript Object aussieht sobald man auf "Daten Senden" klickt.
 
-        const jsonBody = JSON.stringify(data);
+      /**
+       * Die Daten werden als JSON String an den Server gesendet.
+       * Schreibe Code, welchen das JavaScript Object der Konstante "data" in einen JSON String umwandelt.
+       * */
+      const jsonBody = JSON.stringify(data);
 
-        fetch(
-          "https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: jsonBody,
-          }
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            alert("Daten erfolgreich gesendet");
-            document.getElementById("dataForm").reset();
+      /**
+       * Aufgabe 3:
+       * - Formulardaten sollen an die REST API gesendet werden.
+       * - Die zuvor konvertierten JSON Daten sollen als Body des Requests gesendet werden.
+       * - Anschliessend soll ein Alert mit dem Text "Daten erfolgreich gesendet" angezeigt werden. 
+       *   Der Benutzer wird direkt zur Seite "notenuebersicht.html" weitergeleitet.
+       * - Beim Auftreten eines Fehlers soll ein Alert mit dem Text 
+       *   "Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut." angezeigt werden.
+       * */
+      fetch('https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: jsonBody
+      })
+          .then(response => response.json())
+          .then(data => {
+              alert('Daten erfolgreich gesendet');
+              window.location.href = 'view.html';
           })
           .catch((error) => {
-            alert(
-              "Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut."
-            );
-            console.error("Error:", error);
+              alert('Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut.')
+              console.error('Error:', error);
           });
 
-      function createJsObjectFromHtmlForm(form) {
-        const formData = new FormData(event.target);
-        const data = {};
+      /**
+       * Aufgabe 4:
+       * 
+       * Testen Sie das Formular und füllen Sie es mit beliebigen Daten aus und senden es ab.
+       * Sie können bei der Lehrperson nachfragen, ob die Daten erfolgreich gesendet und in der REST API gespeichert wurden.
+       * */
+  }
 
-        for (let [key, value] of formData.entries()) {
-          if (value === "on") {
-            value = true;
+  function createJsObjectFromHtmlForm(form) {
+      const formData = new FormData(event.target);
+      const data = {};
+
+      for (let [key, value] of formData.entries()) {
+          if (value === 'on') {
+              value = true;
           }
-          if (value === "off") {
-            value = false;
+          if (value === 'off') {
+              value = false;
           }
           data[key] = value;
-        }
-        return data;
       }
-    </script>
+      return data;
+  }
+</script>
+
 </body>
 <style>
 
