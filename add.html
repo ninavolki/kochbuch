@@ -37,9 +37,9 @@
                     <input type="text" name="Rezeptname" placeholder="Rezeptname" id="Rezeptname"required>
 
                     <p>Schwierigkeitsgrad:</p>
-                    Einfach <input type="radio" name="schwirigkeit-e"required> 
-                    Mittel <input type="radio" name="schwirigkeit-m"required> 
-                    Schwierig <input type="radio" name="schwirigkeit-s"required> 
+                    Einfach <input type="radio" name="schwirigkeit"required> 
+                    Mittel <input type="radio" name="schwirigkeit"required> 
+                    Schwierig <input type="radio" name="schwirigkeit"required> 
 
                     <input type="text" name="Zutaten" placeholder="Zutaten" id="Zutaten" required>
                     <input type="text" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" required>
@@ -85,15 +85,6 @@
        * */
       const jsonBody = JSON.stringify(data);
 
-      /**
-       * Aufgabe 3:
-       * - Formulardaten sollen an die REST API gesendet werden.
-       * - Die zuvor konvertierten JSON Daten sollen als Body des Requests gesendet werden.
-       * - Anschliessend soll ein Alert mit dem Text "Daten erfolgreich gesendet" angezeigt werden. 
-       *   Der Benutzer wird direkt zur Seite "notenuebersicht.html" weitergeleitet.
-       * - Beim Auftreten eines Fehlers soll ein Alert mit dem Text 
-       *   "Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut." angezeigt werden.
-       * */
       fetch('https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records', {
           method: 'POST',
           headers: {
@@ -111,12 +102,6 @@
               console.error('Error:', error);
           });
 
-      /**
-       * Aufgabe 4:
-       * 
-       * Testen Sie das Formular und füllen Sie es mit beliebigen Daten aus und senden es ab.
-       * Sie können bei der Lehrperson nachfragen, ob die Daten erfolgreich gesendet und in der REST API gespeichert wurden.
-       * */
   }
 
   function createJsObjectFromHtmlForm(form) {
@@ -221,9 +206,6 @@ input[type="submit"] {
   width: 700px;
   
 }
-
-
-
 
 </style>
 
