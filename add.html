@@ -69,7 +69,7 @@
 </div>
 
     <script>
-       // Hier kommt der JavaScript Code https://me22e-1.hbevf6.easypanel.host/api/collections/Rezeptbuch/records
+       // Hier kommt der JavaScript Code https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records
        function submitForm(event) {
         event.preventDefault();
 
@@ -79,7 +79,7 @@
         const jsonBody = JSON.stringify(data);
 
         fetch(
-          "https://me22e-1.hbevf6.easypanel.host/api/collections/Rezeptbuch/records",
+          "https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records",
           {
             method: "POST",
             headers: {
@@ -100,16 +100,6 @@
             console.error("Error:", error);
           });
 
-        /**
-         * Aufgabe 4:
-         *
-         * Testen Sie das Formular und füllen Sie es mit beliebigen Daten aus und senden es ab.
-         * Sie können bei der Lehrperson nachfragen, ob die Daten erfolgreich gesendet und in der REST API gespeichert wurden.
-         * */
-      }
-      /**
-       * Hilfsmethode, um Daten aus Formular auszulesen.
-       * */
       function createJsObjectFromHtmlForm(form) {
         const formData = new FormData(event.target);
         const data = {};
