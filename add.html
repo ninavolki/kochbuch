@@ -34,15 +34,21 @@
             <div class="col-md">
               <div class="container">
                 <form id="dataForm" onsubmit="submitForm(event)">
-                    <input type="text" name="Rezeptname" placeholder="Rezeptname" id="Rezeptname"required>
+                  <label for="Rezeptname"></label>  
+                  <input type="text" name="Rezeptname" placeholder="Rezeptname" id="Rezeptname"required>
 
                     <p>Schwierigkeitsgrad:</p>
+                   <label for="Schwierigkeitsgrad"></label>
                     Einfach <input type="radio" name="schwirigkeit"required> 
                     Mittel <input type="radio" name="schwirigkeit"required> 
                     Schwierig <input type="radio" name="schwirigkeit"required> 
 
+                    <label for="Zutaten"></label>
                     <input type="text" name="Zutaten" placeholder="Zutaten" id="Zutaten" required>
+
+                    <label for="Zubereitungszeit"></label>
                     <input type="text" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" required>
+                    <label for="Arbeitsschritte"></label>
                     <input type="text" name="Arbeitsschritte" placeholder="Bitte beschreibe die Arbeitsschritte" id="Arbeitsschritte" required>
            
                     <div class="Bewertung">
