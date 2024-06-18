@@ -45,7 +45,7 @@
                     <input type="text" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" required>
                     <input type="text" name="Arbeitsschritte" placeholder="Bitte beschreibe die Arbeitsschritte" id="Arbeitsschritte" required>
            
-                    <div class="sterneBewertung">
+                    <div class="Bewertung">
                       <p>:Bewertung</p>
                         
                         <input type="radio" id="star5" name="stern" value="5">
@@ -95,7 +95,7 @@
           .then(response => response.json())
           .then(data => {
               alert('Daten erfolgreich gesendet');
-              window.location.href = 'view.html';
+              window.location.href = 'add.html';
           })
           .catch((error) => {
               alert('Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut.')
