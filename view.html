@@ -33,13 +33,86 @@
       <p>Endecke hier neue Rezepte</p>
     </div>
 
-    <div class="container-buttons">
+    <div class="container-buttons" id="rezeptListe">
       <div class="row">
-        <div class="col-md"></div>
-        <div class="col-md"></div>
+        <div class="col-md">
+        </div>
+        <div class="col-md">
+           <div class="card">
+          <h2>Titel</h2>
+          <p>Schwierigkeitsgrad</p>
+          <p>bewertung</p>
+          <p>Zubereutungszeit</p>
+          <p>zutaten</p>
+          <p>arbeitsschritte</p>
+        </div>
+      </div>
         <div class="col-md"></div>
       </div>
     </div>
+
+    <script>
+
+      function fetchData() {
+          
+          fetch('https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+              .then(response => response.json())
+              .then(data => displayData(data))
+              .catch((error) => {
+                  alert('Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut.');
+                  console.error('Error:', error);
+              });
+      }
+
+      function getSternli(bewertung){
+        let sternli =  "<div>";
+            for(let a = 0; a < bewertung; a++){
+              sternli += `<span style="color: #ffcc00; font-size: 30px;">&#9733;</span>`;
+            }for(let a = 0; a < 5-bewertung; a++){
+              sternli += `<span style="color: #aaa; font-size: 30px;">&#9733;</span>`;
+            }
+            sternli += "</div>";
+            return sternli;
+      }
+
+      function displayData(data) {
+          const rezepte = data.items;
+
+          const rezeptListe = document.getElementById('rezeptListe');
+          rezeptListe.innerHTML = '';
+
+          let innerHtml = '';
+          for (let rezept of rezepte) {
+            
+
+              innerHtml += `<div class="row">
+        <div class="col-md">
+         
+        </div>
+        <div class="col-md">
+           <div class="card">
+          <h2>${rezept.Rezeptname}</h2>
+          <p>${rezept.Schwierigkeitsgrad}</p>
+           ${getSternli(rezept.Bewertung)}
+          <p>${rezept.Zubereitungszeit} min </p>
+          <p>${rezept.Zutaten}</p>
+          <p>${rezept.Arbeitsschritte}</p>
+        </div>
+      </div>
+        <div class="col-md"></div>
+      </div>`;
+          }
+       
+          rezeptListe.innerHTML = innerHtml;
+      }
+
+      fetchData();
+  </script>
 
     <style>
       input[type="text"] {
@@ -95,6 +168,29 @@
       .nav a:hover {
         color: rgb(11, 142, 162);
         text-decoration: none;
+      }
+      .card {
+        background-color: rgba(173, 216, 230, 0.75);
+        text-align: center;
+        margin-top: 75px;
+        padding-top: 25px;
+        border-radius: 15px;
+        border: none;
+
+      }
+      .card p {
+        background-color:rgba(195, 240, 255, 0.75);
+        margin-right: 30px;
+        margin-left: 30px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 10px;
+      }
+ 
+      h2 {
+        text-align: center;
+        font-weight: 800;
+        font-size: 40px;
       }
     </style>
   </body>

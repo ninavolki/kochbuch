@@ -39,30 +39,30 @@
 
                     <p>Schwierigkeitsgrad:</p>
                    <label for="Schwierigkeitsgrad"></label>
-                    Einfach <input type="radio" name="schwirigkeit"required> 
-                    Mittel <input type="radio" name="schwirigkeit"required> 
-                    Schwierig <input type="radio" name="schwirigkeit"required> 
+                    Einfach <input type="radio" name="Schwierigkeitsgrad" value="einfach" required> 
+                    Mittel <input type="radio" name="Schwierigkeitsgrad" value="mittel" required> 
+                    Schwierig <input type="radio" name="Schwierigkeitsgrad" value="schwierig"required> 
 
                     <label for="Zutaten"></label>
                     <input type="text" name="Zutaten" placeholder="Zutaten" id="Zutaten" required>
 
                     <label for="Zubereitungszeit"></label>
-                    <input type="text" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" required>
+                    <input type="number" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" required>
                     <label for="Arbeitsschritte"></label>
-                    <input type="text" name="Arbeitsschritte" placeholder="Bitte beschreibe die Arbeitsschritte" id="Arbeitsschritte" required>
+                    <textarea cols="40" rows="8" name="Arbeitsschritte" id="Arbeitsschritte" placeholder="Bitte beschreibe die Arbeitsschritte" required></textarea>
            
                     <div class="Bewertung">
                       <p>:Bewertung</p>
                         
-                        <input type="radio" id="star5" name="stern" value="5">
+                        <input type="radio" id="star5" name="Bewertung" value="5">
                         <label for="star5">&#9733;</label>
-                        <input type="radio" id="star4" name="stern" value="4">
+                        <input type="radio" id="star4" name="Bewertung" value="4">
                         <label for="star4">&#9733;</label>
-                        <input type="radio" id="star3" name="stern" value="3">
+                        <input type="radio" id="star3" name="Bewertung" value="3">
                         <label for="star3">&#9733;</label>
-                        <input type="radio" id="star2" name="stern" value="2">
+                        <input type="radio" id="star2" name="Bewertung" value="2">
                         <label for="star2">&#9733;</label>
-                        <input type="radio" id="star1" name="stern" value="1">
+                        <input type="radio" id="star1" name="Bewertung" value="1">
                         <label for="star1">&#9733;</label> 
                     </div>
 
@@ -78,17 +78,11 @@
   function submitForm(event) {
       event.preventDefault();
 
-      /**
-       * Mithilfe der createJsObjectFromHtmlForm() können Daten als JavaScript Object 
-       * aus dem Formular ausgelesen werden.
-       * */
+  
       const data = createJsObjectFromHtmlForm(event);
-      console.log(data); // in der Konsole sieht man wie das JavaScript Object aussieht sobald man auf "Daten Senden" klickt.
+      console.log(data); 
 
-      /**
-       * Die Daten werden als JSON String an den Server gesendet.
-       * Schreibe Code, welchen das JavaScript Object der Konstante "data" in einen JSON String umwandelt.
-       * */
+   
       const jsonBody = JSON.stringify(data);
 
       fetch('https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records', {
@@ -152,7 +146,7 @@ padding: 50px 100px 100px 100px;
 .container {
             background-color: rgba(173, 216, 230, 0.75);
             padding: 20px 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             text-align: center;
             width: 100%;
@@ -169,11 +163,30 @@ input[type="text"], input[type="submit"] {
             background-color: rgb(195, 240, 255);
         }
 input[type="submit"] {
-            background-color: lightblue;
+            background-color:rgb(195, 240, 255);
             border: none;
             cursor: pointer;
             font-size: 16px;
         }
+        textarea {
+          width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: rgb(195, 240, 255);
+        }
+        input[type="number"] {
+          width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: rgb(195, 240, 255);
+        }
+
 .Bewertung {
     unicode-bidi: bidi-override;
     direction: rtl;
@@ -212,6 +225,7 @@ input[type="submit"] {
   width: 700px;
   
 }
+
 
 </style>
 
