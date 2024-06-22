@@ -36,18 +36,21 @@
     <div class="container-buttons" id="rezeptListe">
       <div class="row">
         <div class="col-md">
+    
         </div>
         <div class="col-md">
-           <div class="card">
-          <h2>Titel</h2>
-          <p>Schwierigkeitsgrad</p>
-          <p>bewertung</p>
-          <p>Zubereutungszeit</p>
-          <p>zutaten</p>
-          <p>arbeitsschritte</p>
+          <div class="card">
+            <h2>Titel</h2>
+            <p>bewertung</p>
+            <p>Schwierigkeitsgrad</p>
+            <p>zutaten</p>
+            <p>arbeitsschritte</p>
+          </div>
         </div>
-      </div>
-        <div class="col-md"></div>
+        <div class="col-md">
+             <div>
+    </div>
+        </div>
       </div>
     </div>
 
@@ -72,7 +75,7 @@
       function getSternli(bewertung){
         let sternli =  "<div>";
             for(let a = 0; a < bewertung; a++){
-              sternli += `<span style="color: #ffcc00; font-size: 30px;">&#9733;</span>`;
+              sternli += `<span style="color: #ffcc00; font-size: 30px; padding-right: 5px;">&#9733; </span>`;
             }for(let a = 0; a < 5-bewertung; a++){
               sternli += `<span style="color: #aaa; font-size: 30px;">&#9733;</span>`;
             }
@@ -97,10 +100,15 @@
         <div class="col-md">
            <div class="card">
           <h2>${rezept.Rezeptname}</h2>
+          ${getSternli(rezept.Bewertung)}
+          <h4>Schwierigkeitsgrad</h4>
           <p>${rezept.Schwierigkeitsgrad}</p>
-           ${getSternli(rezept.Bewertung)}
+           
+          <h4>Zubereitungszeit</h4>
           <p>${rezept.Zubereitungszeit} min </p>
+          <h4>Zutaten</h4>
           <p>${rezept.Zutaten}</p>
+          <h4>Arbeitsschritte</h4>
           <p>${rezept.Arbeitsschritte}</p>
         </div>
       </div>
@@ -170,18 +178,19 @@
         text-decoration: none;
       }
       .card {
-        background-color: rgba(173, 216, 230, 0.75);
+        background-color: rgba(173, 216, 230, 0.90);
         text-align: center;
         margin-top: 75px;
         padding-top: 25px;
+        padding-bottom: 25px;
         border-radius: 15px;
         border: none;
 
       }
       .card p {
-        background-color:rgba(195, 240, 255, 0.75);
-        margin-right: 30px;
-        margin-left: 30px;
+        background-color:rgba(195, 240, 255, 0.90);
+       
+       margin: 0px 30px 0px 30px;
         text-align: center;
         padding: 5px;
         border-radius: 10px;
@@ -192,6 +201,16 @@
         font-weight: 800;
         font-size: 40px;
       }
+      h4 {
+        
+        text-align: left;
+        font-size: 18px;
+    
+        
+        margin: 30px 0px 0px 30px;
+        font-weight: 800;
+      }
+
     </style>
   </body>
 </html>
