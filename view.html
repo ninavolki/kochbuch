@@ -33,12 +33,10 @@
       <p>Endecke hier neue Rezepte</p>
     </div>
 
-    <div class="container-buttons" id="rezeptListe">
       <div class="row">
+        <div class="col-md"></div>
         <div class="col-md">
-    
-        </div>
-        <div class="col-md">
+          <div class="container-buttons" id="rezeptListe">
           <div class="card">
             <h2>Titel</h2>
             <p>bewertung</p>
@@ -46,64 +44,74 @@
             <p>zutaten</p>
             <p>arbeitsschritte</p>
           </div>
-        </div>
+        </div> 
+      </div> 
         <div class="col-md">
-             <div>
-    </div>
+          <div class="box">
+          <div class="kommentar">
+            <form>
+              <h2>Kommentare</h2>
+              <input type="text" name="rezeptname" placeholder="Rezeptname" id="Name" required>
+              <input type="number" name="bewertung" placeholder="Deine Bewertung" id="Bewertung" min="0" max="5" required> 
+              <textarea type="text" name="kommentar" placeholder="Dein Kommentar" id="kommentar" required cols="40" rows="8"></textarea><br>
+              <input type="submit" value="Posten">
+            </form>
+          </div>
+          </div>
         </div>
       </div>
+
+     
     </div>
 
     <script>
-
       function fetchData() {
-          
-          fetch('https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records', {
-              method: 'GET',
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          })
-              .then(response => response.json())
-              .then(data => displayData(data))
-              .catch((error) => {
-                  alert('Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut.');
-                  console.error('Error:', error);
-              });
+        fetch(
+          "https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => displayData(data))
+          .catch((error) => {
+            alert(
+              "Ein Fehler beim senden der Daten ist aufgetreten. Bitte versuchen Sie es später erneut."
+            );
+            console.error("Error:", error);
+          });
       }
 
-      function getSternli(bewertung){
-        let sternli =  "<div>";
-            for(let a = 0; a < bewertung; a++){
-              sternli += `<span style="color: #ffcc00; font-size: 30px; padding-right: 5px;">&#9733; </span>`;
-            }for(let a = 0; a < 5-bewertung; a++){
-              sternli += `<span style="color: #aaa; font-size: 30px;">&#9733;</span>`;
-            }
-            sternli += "</div>";
-            return sternli;
+      function getSternli(bewertung) {
+        let sternli = "<div>";
+        for (let a = 0; a < bewertung; a++) {
+          sternli += `<span style="color: #ffcc00; font-size: 30px; padding-right: 5px;">&#9733; </span>`;
+        }
+        for (let a = 0; a < 5 - bewertung; a++) {
+          sternli += `<span style="color: #aaa; font-size: 30px;">&#9733;</span>`;
+        }
+        sternli += "</div>";
+        return sternli;
       }
 
       function displayData(data) {
-          const rezepte = data.items;
+        const rezepte = data.items;
 
-          const rezeptListe = document.getElementById('rezeptListe');
-          rezeptListe.innerHTML = '';
+        const rezeptListe = document.getElementById("rezeptListe");
+        rezeptListe.innerHTML = "";
 
-          let innerHtml = '';
-          for (let rezept of rezepte) {
-            
-
-              innerHtml += `<div class="row">
-        <div class="col-md">
-         
-        </div>
+        let innerHtml = "";
+        for (let rezept of rezepte) {
+          innerHtml += `
         <div class="col-md">
            <div class="card">
           <h2>${rezept.Rezeptname}</h2>
           ${getSternli(rezept.Bewertung)}
           <h4>Schwierigkeitsgrad</h4>
-          <p>${rezept.Schwierigkeitsgrad}</p>
-           
+          <p>${rezept.Schwierigkeitsgrad}</p>           
           <h4>Zubereitungszeit</h4>
           <p>${rezept.Zubereitungszeit} min </p>
           <h4>Zutaten</h4>
@@ -111,27 +119,17 @@
           <h4>Arbeitsschritte</h4>
           <p>${rezept.Arbeitsschritte}</p>
         </div>
-      </div>
-        <div class="col-md"></div>
       </div>`;
-          }
-       
-          rezeptListe.innerHTML = innerHtml;
+        }
+
+        rezeptListe.innerHTML = innerHtml;
       }
 
       fetchData();
-  </script>
+    </script>
 
     <style>
-      input[type="text"] {
-        width: 500px;
-        height: 30px;
-        border: none;
-        background-color: rgb(195, 240, 255);
-        margin-top: 20px;
-        color: black;
-      }
-
+     
       body {
         font-family: "Julius Sans One", sans-serif;
         background-image: url("hintergrund.png");
@@ -178,39 +176,59 @@
         text-decoration: none;
       }
       .card {
-        background-color: rgba(173, 216, 230, 0.90);
+        background-color: rgba(173, 216, 230, 0.9);
         text-align: center;
         margin-top: 75px;
         padding-top: 25px;
         padding-bottom: 25px;
         border-radius: 15px;
         border: none;
-
       }
       .card p {
-        background-color:rgba(195, 240, 255, 0.90);
-       
-       margin: 0px 30px 0px 30px;
+        background-color: rgba(195, 240, 255, 0.9);
+        margin: 0px 30px 0px 30px;
         text-align: center;
         padding: 5px;
         border-radius: 10px;
       }
- 
+      .box {
+        background-color: rgba(173, 216, 230, 0.9);
+            padding: 20px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 70%;
+            max-width: 700px;
+            margin-top: 75px;
+            text-align: center;   
+            display: block; 
+            margin-left: auto;
+            margin-right: auto;
+      }
+
+      input[type="text"],
+      input[type="number"], input[type="submit"], textarea {
+        width: 400px;
+        border: none;
+        background-color: rgb(195, 240, 255);
+        margin-top: 20px;
+        color: black;
+        border-radius: 10px;  
+        padding: 10px;
+      }
+
       h2 {
         text-align: center;
         font-weight: 800;
         font-size: 40px;
       }
       h4 {
-        
         text-align: left;
         font-size: 18px;
-    
-        
+
         margin: 30px 0px 0px 30px;
         font-weight: 800;
       }
-
     </style>
   </body>
 </html>

@@ -34,21 +34,21 @@
             <div class="col-md">
               <div class="container">
                 <form id="dataForm" onsubmit="submitForm(event)">
-                  <label for="Rezeptname"></label>  
+                 
                   <input type="text" name="Rezeptname" placeholder="Rezeptname" id="Rezeptname"required>
 
-                    <p>Schwierigkeitsgrad:</p>
-                   <label for="Schwierigkeitsgrad"></label>
+                   <p>Schwierigkeitsgrad:</p>
+                   
                     Einfach <input type="radio" name="Schwierigkeitsgrad" value="einfach" required> 
                     Mittel <input type="radio" name="Schwierigkeitsgrad" value="mittel" required> 
                     Schwierig <input type="radio" name="Schwierigkeitsgrad" value="schwierig"required> 
 
-                    <label for="Zutaten"></label>
+                   
                     <input type="text" name="Zutaten" placeholder="Zutaten" id="Zutaten" required>
 
-                    <label for="Zubereitungszeit"></label>
-                    <input type="number" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" required>
-                    <label for="Arbeitsschritte"></label>
+                    
+                    <input type="number" name="Zubereitungszeit" placeholder="Zubereitungszeit" id="Zubereitungszeit" min="0" max="5" required>
+                    
                     <textarea cols="40" rows="8" name="Arbeitsschritte" id="Arbeitsschritte" placeholder="Bitte beschreibe die Arbeitsschritte" required></textarea>
            
                     <div class="Bewertung">
@@ -155,7 +155,7 @@ padding: 50px 100px 100px 100px;
             max-width: 700px;
             margin-top: 60px;
         }
-input[type="text"], input[type="submit"] {
+input[type="text"], input[type="submit"], input[type="number"], textarea {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -163,32 +163,9 @@ input[type="text"], input[type="submit"] {
             border-radius: 5px;
             box-sizing: border-box;
             background-color: rgb(195, 240, 255);
-        }
-input[type="submit"] {
-            background-color:rgb(195, 240, 255);
-            border: none;
             cursor: pointer;
             font-size: 16px;
         }
-        textarea {
-          width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            box-sizing: border-box;
-            background-color: rgb(195, 240, 255);
-        }
-        input[type="number"] {
-          width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            box-sizing: border-box;
-            background-color: rgb(195, 240, 255);
-        }
-
 .Bewertung {
     unicode-bidi: bidi-override;
     direction: rtl;
