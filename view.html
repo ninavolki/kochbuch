@@ -47,17 +47,7 @@
         </div> 
       </div> 
         <div class="col-md">
-          <div class="box">
-          <div class="kommentar">
-            <form>
-              <h2>Kommentare</h2>
-              <input type="text" name="rezeptname" placeholder="Rezeptname" id="Name" required>
-              <input type="number" name="bewertung" placeholder="Deine Bewertung" id="Bewertung" min="0" max="5" required> 
-              <textarea type="text" name="kommentar" placeholder="Dein Kommentar" id="kommentar" required cols="40" rows="8"></textarea><br>
-              <input type="submit" value="Posten">
-            </form>
-          </div>
-          </div>
+          
         </div>
       </div>
 
@@ -65,6 +55,7 @@
     </div>
 
     <script>
+
       function fetchData() {
         fetch(
           "https://me22e-1.hbevf6.easypanel.host/api/collections/Rezepte/records",
@@ -126,6 +117,8 @@
       }
 
       fetchData();
+
+      
     </script>
 
     <style>
@@ -225,7 +218,6 @@
       h4 {
         text-align: left;
         font-size: 18px;
-
         margin: 30px 0px 0px 30px;
         font-weight: 800;
       }

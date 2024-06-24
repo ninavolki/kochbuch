@@ -32,14 +32,21 @@
   <div class="row">
 
     <div class="col-md"> </div>
-    <div class="col-md"> <a href="view.html"> <button type="button" class="knopf1" >Anschauen</button> </a></div>
-    <div class="col-md"> <a href="add.html"> <button type="button">Rezept Hinzufuegen</button> </a></div>
+    <div class="col-md"> 
+      <a href="view.html" class="link"><button type="button">View</button></a>
+      
+    </div>
+    <div class="col-md"> 
+      <a href="add.html" class="link"> <button type="button">Add</button> </a>
+    </div>
     <div class="col-md"> </div>
+    
   
   </div>
   </div>
 
 <style>
+
 
 body {font-family: 'Julius Sans One', sans-serif;
 background-image: url("hintergrund.png");} 
@@ -57,14 +64,17 @@ font-size: 90px;
 }
 button {background-color: lightblue;
 border: none;
-border-radius: 2cm;
+border-radius: 20px;
 width: auto;
 height: 100px;
 font-size: 30px;
-margin: 30px;
+margin: 30px auto 30px auto;
 padding: 20px;
 font-family: 'Julius Sans One', sans-serif;
+display: block;
+
 }
+
 .nav {
   display: flex;
 }
@@ -77,6 +87,10 @@ font-family: 'Julius Sans One', sans-serif;
   color:rgb(11, 142, 162);
   text-decoration: none;
 }
+.link {
+    color: black;
+    text-decoration: none !important;
+  }
 </style>
 
   </body>
